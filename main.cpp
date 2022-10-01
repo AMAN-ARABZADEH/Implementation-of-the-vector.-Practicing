@@ -24,7 +24,7 @@ int main() {
     names[7] = "Elen";
     names[8] = "Lilly";
     names[9] = "Robin";
-    bubble_sort(names.begin(), names.size(), normalCompare1);
+    bubble_sort(names.begin(), names.size(), less<std::string>());
 
     for(const auto &coll : names){
         std::cout << coll << ",  ";
@@ -129,7 +129,7 @@ int main() {
         random_numbers[i] = arr[i];
     }
 
-    bubble_sort(arr, 200, normalCompare);
+    bubble_sort(arr, 200, greater<int>());
     Display(arr, random_numbers.size());
 
     std::cout <<"\n\n=========================Testing Bubble_sort====================================\n" <<std::endl;

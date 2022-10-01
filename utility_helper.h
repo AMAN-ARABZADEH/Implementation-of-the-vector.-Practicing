@@ -5,7 +5,7 @@
 #ifndef STL_UTILITY_HELPER_H
 #define STL_UTILITY_HELPER_H
 // find algorithm STL my Implementation
-
+#include <cstdlib>
 
 template <typename IteratorType, typename T>
 IteratorType find(IteratorType begin, IteratorType end, const T &value){
@@ -20,7 +20,7 @@ IteratorType find(IteratorType begin, IteratorType end, const T &value){
 
 // Bubble sort Implementation
 template <typename  T, typename CompareType>
-void bubble_sort(T *array, std::size_t size, const CompareType Compare){
+void bubble_sort(T *array, std::size_t size, const CompareType &Compare){
     for(auto i = 0; i < size; ++i){
         for(auto j = i+1; j < size; ++j){
             if(Compare(array[i], array[j])){
@@ -33,7 +33,7 @@ void bubble_sort(T *array, std::size_t size, const CompareType Compare){
     }
 }
 
-
+// Displays the collection
 template <typename  T>
 void Display( T *array, size_t size) {
     std::cout << "===================================================" << std::endl;
@@ -42,4 +42,23 @@ void Display( T *array, size_t size) {
     }
     std::cout << "\n===================================================" << std::endl;
 }
+
+
+
+
+// comparison operation
+template <typename  T>
+struct less{
+        bool operator()( const T &x,const  T &y)const{
+            return (x < y);
+        }
+    };
+
+// comparison operation
+template <typename  T>
+struct greater{
+    bool operator()( const T &x,const  T &y)const{
+        return (x > y);
+    }
+};
 #endif //STL_UTILITY_HELPER_H
