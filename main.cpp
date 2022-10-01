@@ -1,17 +1,8 @@
 #include <iostream>
+#include <functional>
 #include "Vector.h"
+#include "utility_helper.h"
 
-// find algorithm STL my Implementation
-
-
-template <typename IteratorType, typename T>
-IteratorType find(IteratorType begin, IteratorType end, const T &value){
-    while(begin != end  // pointer comparison
-          && *begin != value){ // dereference value comparision
-        ++begin; // next position
-    }
-    return begin;
-}
 
 
 
@@ -21,6 +12,7 @@ int main() {
 
     vc::Vector<std::string> names(10);  // tests with strings
     std::cout <<"\n=============================================================\n" <<std::endl;
+    std::less<unsigned int> normalCompare;    std::greater<std::string> normalCompare1;
 
     names[0] = "Aman";
     names[1] = "Sara";
@@ -32,6 +24,7 @@ int main() {
     names[7] = "Elen";
     names[8] = "Lilly";
     names[9] = "Robin";
+    bubble_sort(names.begin(), names.size(), normalCompare1);
 
     for(const auto &coll : names){
         std::cout << coll << ",  ";
@@ -52,6 +45,8 @@ int main() {
 
         }
     }
+
+
 
 
 
@@ -123,8 +118,22 @@ int main() {
     }
 
 
+    std::cout <<"\n\n=========================Testing Bubble_sort====================================\n" <<std::endl;
+    srand(unsigned(time(nullptr)));
 
+    vc::Vector<unsigned int> random_numbers(200);
+    int arr[200];
 
+    for(int i = 0; i <200; ++i){
+        arr[i] = rand() % 200;
+        random_numbers[i] = arr[i];
+    }
 
+    bubble_sort(arr, 200, normalCompare);
+    Display(arr, random_numbers.size());
+
+    std::cout <<"\n\n=========================Testing Bubble_sort====================================\n" <<std::endl;
+    bubble_sort(random_numbers.begin(), random_numbers.size(), normalCompare);
+    Display(random_numbers.begin(), random_numbers.size());
     return 0;
 }
